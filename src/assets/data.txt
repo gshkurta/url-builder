@@ -1,0 +1,74 @@
+
+Links EN
+
+en: BookEarlyBtn: https://www.go-ferry.com;
+en: LIV-BIA: https://www.go-ferry.com/routes/french-routes/ferry-livorno-bastia;
+en: LIV-OLB: https://www.go-ferry.com/routes/italian-routes/ferry-livorno-olbia;
+en: CIV-OLB: https://www.go-ferry.com/routes/italian-routes/ferry-civitavecchia-olbia;
+en: GOA-OLB: https://www.go-ferry.com/routes/italian-routes/ferry-genoa-olbia;
+en: BRC-PAL: No URL;
+en: BRC-IBZ: https://www.go-ferry.com/routes/spanish-routes/ferry-barcelona-ibiza;
+en: DEN-IBZ: https://www.go-ferry.com/routes/spanish-routes/ferry-denia-ibiza;
+en: ALG-CEU: https://www.go-ferry.com/routes/spanish-routes/ferry-algeciras-ceuta;
+en: CAD-LPA: No URL;
+en: CAD-FUE: No URL;
+en: CAD-ACE: No URL;
+en: HUV-TEN: No URL;
+en: LEI-ORN: No URL;
+en: GOA-TUN: https://www.go-ferry.com/routes/tunisian-routes/ferry-genoa-tunis;
+en: SET-NDR: https://www.go-ferry.com/routes/moroccan-routes/ferry-sete-nador;
+en: ALG-TNG: No URL;
+en: ViewMoreBtn: https://www.go-ferry.com/routes;
+en: InteractiveMapBtn: https://www.go-ferry.com/full-map;
+en: Schedules2025Article: https://www.go-ferry.com/trends-and-insights/schedules-and-offers;
+en: MainlandEuropeArticle: https://www.go-ferry.com/trends-and-insights/from-mainland-europe-to-the-islands
+
+
+Links DE
+
+de: BookEarlyBtn: https://www.goferry.de;
+de: LIV-BIA: https://www.goferry.de/routen/franzoesische-routen/faehre-livorno-bastia;
+de: LIV-OLB: https://www.goferry.de/routen/italienische-routen/faehre-livorno-olbia;
+de: CIV-OLB: https://www.goferry.de/routen/italienische-routen/faehre-civitavecchia-olbia;
+de: GOA-OLB: https://www.goferry.de/routen/italienische-routen/faehre-genua-olbia;
+de: BRC-PAL: No URL;
+de: BRC-IBZ: No URL;
+de: DEN-IBZ: No URL;
+de: ALG-CEU: No URL;
+de: CAD-LPA: No URL;
+de: CAD-FUE: No URL;
+de: CAD-ACE: No URL;
+de: HUV-TEN: No URL;
+de: LEI-ORN: No URL;
+de: GOA-TUN: https://www.goferry.de/routen/tunesische-routen/faehre-genua-tunis;
+de: LEI-NDR: No URL;
+de: ALG-TNG: No URL;
+de: ViewMoreBtn: https://www.goferry.de/routen;
+de: InteractiveMapBtn: https://www.goferry.de/vollstaendige-kartenansicht;
+de: Schedules2025Article: https://www.goferry.de/trends-und-einblicke/aktuelle-fahrplaene-und-angebote;
+de: MainlandEuropeArticle: https://www.goferry.de/trends-und-einblicke/vom-festland-europas-zu-den-inseln
+
+
+Links FR
+
+fr: BookEarlyBtn: https://www.go-ferry.fr/;
+fr: LIV-BIA: https://www.go-ferry.fr/itineraires/itineraires-francais/ferry-livourne-bastia;
+fr: LIV-OLB: https://www.go-ferry.fr/itineraires/itineraires-italiens/ferry-livourne-olbia;
+fr: CIV-OLB: https://www.go-ferry.fr/itineraires/itineraires-italiens/ferry-civitavecchia-olbia;
+fr: GOA-OLB: https://www.go-ferry.fr/itineraires/itineraires-italiens/ferry-genes-olbia;
+fr: BRC-PAL: No URL;
+fr: BRC-IBZ: No URL;
+fr: DEN-IBZ: No URL;
+fr: ALG-CEU: No URL;
+fr: CAD-LPA: No URL;
+fr: CAD-FUE: No URL;
+fr: CAD-ACE: No URL;
+fr: HUV-TEN: No URL;
+fr: LEI-ORN: No URL;
+fr: GOA-TUN: https://www.go-ferry.fr/itineraires/itineraires-tunisiens/ferry-genes-tunis;
+fr: LEI-NDR: No URL;
+fr: ALG-TNG: No URL;
+fr: ViewMoreBtn: https://www.go-ferry.fr/itineraires;
+fr: InteractiveMapBtn: https://www.go-ferry.fr/carte-complete;
+fr: Schedules2025Article: https://www.go-ferry.fr/dernieres-nouvelles/horaires-prix-et-offres;
+fr: MainlandEuropeArticle: https://www.go-ferry.fr/dernieres-nouvelles/de-l-europe-continentale-aux-iles
