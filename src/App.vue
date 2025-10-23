@@ -105,7 +105,7 @@ const buildUrls = () => {
 }
 
 const copyUrl = async (index: number) => {
-    const text = urlList.value[index] || ""
+    const text = urlList.value[index]?.url || ""
     try {
         await copy(text)
         copiedIndex.value = index
