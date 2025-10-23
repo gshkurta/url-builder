@@ -1,8 +1,10 @@
 <template>
     <div>
         <!-- Header -->
-        <div class="flex items-center gap-4 p-4">
-            <div class="flex-1"></div>
+        <header class="flex items-center gap-4 py-4 max-w-7xl mx-auto">
+            <div class="flex-1">
+                <div class="text-lg font-medium">Url Builder</div>
+            </div>
             <Dialog>
                 <DialogTrigger as-child>
                     <Button>
@@ -20,57 +22,65 @@
                         <Textarea v-model="urls" placeholder="Url's" class="h-[60vh]"></Textarea>
                     </div>
                     <DialogFooter>
-                        <Button type="submit" @click="buildUrls">
-                            Build
-                        </Button>
+                        <DialogClose as-child>
+                            <Button type="submit" @click="buildUrls">
+                                Build
+                            </Button>
+                        </DialogClose>
                     </DialogFooter>
                 </DialogContent>
             </Dialog>
-        </div>
+        </header>
         <!-- Url List -->
-        <div>
-            <div v-for="(url, index) in urlList" :key="index" class=" border-t py-4 px-4">
-                <div class="bg-secondary inline-flex items-center rounded-lg divide-x mb-3">
-                    <div class="font-bold pr-3">{{ url.title }}</div>
-                    <Button size="icon" variant="secondary" @click="copyUrl(index)">
-                        <svg v-if="copiedIndex === index" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"></path></svg>
-                        <svg v-else xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256"><path d="M184,64H40a8,8,0,0,0-8,8V216a8,8,0,0,0,8,8H184a8,8,0,0,0,8-8V72A8,8,0,0,0,184,64Zm-8,144H48V80H176ZM224,40V184a8,8,0,0,1-16,0V48H72a8,8,0,0,1,0-16H216A8,8,0,0,1,224,40Z"></path></svg>
-                    </Button>
+        <div class="bg-white border border-stone-200 rounded-lg max-w-7xl mx-auto min-h-52 overflow-hidden">
+            <!-- Header -->
+            <div class="grid grid-cols-12 divide-x">
+                <!-- Title -->
+                <div class="col-span-3 text-sm font-semibold p-2">
+                    Title
                 </div>
-                <div class="flex-1 truncate">{{ url.url }}</div>
+                <!-- Url -->
+                <div class="col-span-9 text-sm font-semibold p-2">
+                    Url
+                </div>
+            </div>
+            <!-- List -->
+            <div v-for="(url, index) in urlList" :key="index" class="grid grid-cols-12 divide-x items-center border-t">
+                <!-- Title -->
+                <div class="col-span-3 font-medium p-3">
+                    {{ url.title }}
+                </div>
+                <!-- Url -->
+                <div class="col-span-9 truncate relative p-3">
+                    {{ url.url }}
+                    <div class="absolute right-0 inset-y-0 flex items-center justify-center bg-white px-1.5">
+                        <Button size="icon" variant="secondary" @click="copyUrl(index)">
+                            <CopyCheckIcon v-if="copiedIndex === index" />
+                            <CopyIcon v-else />
+                        </Button>
+                    </div>
+                </div>
+            </div>
+            <!-- Empty State -->
+            <div v-if="urlList.length <= 0" class="border-t">
+
             </div>
         </div>
     </div>
+    <Toaster />
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue"
 import { useClipboard } from "@vueuse/core"
+import { toast, Toaster } from 'vue-sonner'
+import { buildUrlsFromText } from '@/lib/urlBuilder'
+import type { BuiltUrlItem } from '@/lib/urlBuilder'
 
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
-import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from "@/components/ui/dialog"
-
-interface UrlItem {
-    title?: string
-    domain_url: string | undefined
-    link_id: string | undefined
-    from?: string
-    to?: string
-}
-
-interface BuiltUrlItem {
-    url: string
-    title?: string
-}
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from "@/components/ui/dialog"
+import { CopyCheckIcon, CopyIcon } from "lucide-vue-next"
 
 const urls = ref<string>("")
 const urlList = ref<BuiltUrlItem[]>([])
@@ -79,29 +89,16 @@ const copiedIndex = ref<number | null>(null)
 const { copy } = useClipboard()
 
 const CMS_URL = ref<string>("{{domain_url}}?coupon={{COUPON_ID}}&utm_source={{UTM_SOURCE}}&utm_medium={{UTM_MEDIUM}}&utm_campaign={{UTM_CAMPAIGN}}&link_id=cms{{link_id}}")
-// const BE_URL = ref<string>("{{domain_url}}?coupon={{COUPON_ID}}&utm_source={{UTM_SOURCE}}&utm_medium={{UTM_MEDIUM}}&utm_campaign={{UTM_CAMPAIGN}}&WFF_selOneWayFrom={{from}}&WFF_selOneWayTo={{to}}&link_id={{link_id}}")
 
 const buildUrls = () => {
-    const tempUrlsList = urls.value.split("\n");
-    const urlsArray: UrlItem[] = []
-
-    tempUrlsList.forEach(item => {
-        const urlItem: UrlItem = { domain_url: "", link_id: "" };
-        urlItem.domain_url = item.split(";")[1];
-        const rawLinkId = (item.split(";")[0] || "").trim();
-        urlItem.link_id = rawLinkId.replace(/[^a-zA-Z0-9_-]/g, "");
-        urlItem.title = rawLinkId;
-        urlsArray.push(urlItem);
-    })
-
-    urlsArray.forEach(item => {
-        const urlItem: BuiltUrlItem = { url: "", title: item.title };
-        let builtUrl = CMS_URL.value;
-        builtUrl = builtUrl.replace("{{domain_url}}", item.domain_url || "");
-        builtUrl = builtUrl.replace("{{link_id}}", item.link_id || "");
-        urlItem.url = builtUrl;
-        urlList.value.push(urlItem);
-    })
+    // Use shared builder util
+    const built = buildUrlsFromText(urls.value, { template: CMS_URL.value })
+    urlList.value = built
+    if (built.length === 0 && urls.value.trim().length > 0) {
+        toast.error('No valid URLs were parsed. Check input format (linkId;domain)')
+    } else {
+        toast.success(`${built.length} URL(s) built`)
+    }
 }
 
 const copyUrl = async (index: number) => {
@@ -109,12 +106,12 @@ const copyUrl = async (index: number) => {
     try {
         await copy(text)
         copiedIndex.value = index
-        // clear feedback after 1.5s
+        // Clear feedback after 1.5s
         setTimeout(() => {
             if (copiedIndex.value === index) copiedIndex.value = null
         }, 1500)
     } catch (e) {
-        // ignore copy errors for now
+        // Ignore copy errors for now
         console.error("Copy failed", e)
     }
 }
